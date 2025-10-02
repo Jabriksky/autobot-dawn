@@ -1,16 +1,13 @@
-# Node modules
+# dependencies
 node_modules/
 
-# Logs
+# logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Environment
-.env
-
-# Sensitive config
-config/token.txt
-config/proxy.txt
+# config
 token.txt
 proxy.txt
+/config/token.txt
+/config/proxy.txt
