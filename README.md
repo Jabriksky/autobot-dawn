@@ -30,7 +30,7 @@ git clone https://github.com/Jabriksky/autobot-dawn.git
 cd autobot-dawn
 
 npm install
-```bash
+``` 
 
 🚀 Usage
 
@@ -42,3 +42,6 @@ Optional: one proxy per line (HTTP/HTTPS):
 
 http://username:password@proxyserver:port
 http://proxyserver2:8080
+
+🛑 Stop the Bot
+    CTRL + C
