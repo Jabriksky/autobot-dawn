@@ -69,20 +69,7 @@ function extractPoints(respData) {
     }
   }
   if (typeof respData !== 'object') return null
-  const candidates = [
-    respData.points,
-    respData.active_points,
-    respData.active,
-    respData.points_total,
-    respData.data && respData.data.points,
-    respData.data && respData.data.active_points,
-    respData.attributes && respData.attributes.points
-  ]
-  for (const c of candidates) {
-    if (typeof c === 'number') return c
-    if (typeof c === 'string' && /^\d+$/.test(c)) return parseInt(c, 10)
-  }
-  return null
+  return respData.points || respData.active_points || null
 }
 
 async function worker(index, token, proxyLines, proxyMode) {
@@ -99,19 +86,26 @@ async function worker(index, token, proxyLines, proxyMode) {
   while (!stopped) {
     const proxyToUse = chooseProxy()
     const axiosInst = createAxiosInstance(token, proxyToUse)
+
     try {
       const res = await axiosInst.get(URL)
       const points = extractPoints(res.data)
       const now = new Date().toISOString().replace('T', ' ').slice(0, 19)
+      if (proxyToUse) {
+        console.log(`[INFO][${id}] Proxy active`)
+      } else {
+        console.log(`[INFO][${id}] No proxy`)
+      }
       if (points !== null) {
         console.log(`[${now}][${id}] Active Points: ${points}`)
       } else {
-        console.log(`[${now}][${id}] HTTP ${res.status} | (points not found)`)
+        console.log(`[${now}][${id}] Active Points: (not found)`)
       }
     } catch (err) {
       const now = new Date().toISOString().replace('T', ' ').slice(0, 19)
       console.log(`[${now}][${id}] Error: ${err.message || String(err)}`)
     }
+
     const delaySec = Math.random() * (35 - 25) + 25
     await new Promise(r => setTimeout(r, Math.round(delaySec * 1000)))
   }
