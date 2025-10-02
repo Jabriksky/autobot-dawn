@@ -31,7 +31,15 @@ cd autobot-dawn
 
 npm install
 ``` 
+📝 Config Files
+    token.txt
+   
+    Put one Bearer token per line:
+    
+eyJxxxxx....
+eyJxxxx....
 
+    
 🚀 Usage
 
 Run the bot with:
