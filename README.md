@@ -35,7 +35,7 @@ npm install
     
     token.txt
 
-'
+``
     Put one Bearer token per line:
     
    'eyJxxxxx....
@@ -45,13 +45,16 @@ npm install
 🚀 Usage
 
 Run the bot with:
+```bash
 
 npm start
 
+``` 
 Optional: one proxy per line (HTTP/HTTPS):
 
 http://username:password@proxyserver:port
 http://proxyserver2:8080
 
 🛑 Stop the Bot
+   
     CTRL + C
